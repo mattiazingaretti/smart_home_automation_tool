@@ -5,8 +5,8 @@ from controllers.light_controller import light_router
 from controllers.thermostat_controller import thermostat_router
 from controllers.devices_state_controller import devices_state_router
 
-fastApiApp = FastAPI(title="Smart Home Automation API")
 
+fastApiApp = FastAPI(title="Smart Home Automation API")
 
 @fastApiApp.get("/")
 async def root():
