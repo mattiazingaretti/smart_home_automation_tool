@@ -5,13 +5,38 @@ from constants import Constants
 
 
 
+def perform_action_on_device(prompt: str) -> str:
+    """
+    Perform an action on a device based on the provided prompt.
+    
+    Args:
+        prompt (str): The user's prompt/query for device action
+        
+    Returns:
+        str: Response from the MCP client
+    """
+    try:
+        response = requests.post(
+            f"{Constants.MCP_CLIENT_URL}/process",
+            headers={"Content-Type": "application/json"},
+            json={"query": prompt}
+        )
+        response.raise_for_status()
+        
+        result = response.json()
+        return result.get("response", "No response received")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error performing action on device: {e}")
+        return f"Error: {str(e)}"
+
 
 def fetch_devices_state() -> list[DeviceState]:
     """
     Fetch device states by making a REST call to the backend.
     """
     try:
-        response = requests.get(f"{Constants.BACKEND_URL}/devices/states")
+        response = requests.get(f"{Constants.BACKEND_URL}/devices/state")
         response.raise_for_status()  
         
         devices_data = response.json()
@@ -39,7 +64,7 @@ def format_device_state(device: DeviceState) -> str:
         </li>
     """
 
-def gradio_process_prompt(prompt: str) -> str:
+def formatted_device_states() -> str:
     
     states = fetch_devices_state()
     states_formatted = f""
