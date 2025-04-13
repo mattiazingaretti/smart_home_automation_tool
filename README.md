@@ -10,11 +10,11 @@ Feel free to contact me for any questions or collaboration opportunities.
 
 ## Demo
 1. Once we have everything Up and Running navigate to the Gradio base URL and check the state of the devices from this tab:
-![alt text](image-1.png)
+![alt text](static/image-1.png)
 2. Then prompt our MCP Client with a natural language command like "Set the light KitchenLight to OFF" and hit generate
-![alt text](image-2.png)
+![alt text](static/image-2.png)
 3. Then check the state of the devices again to see the changes:
-![alt text](image-3.png)
+![alt text](static/image-3.png)
 ## System Architecture
 
 The project consists of four main components:
